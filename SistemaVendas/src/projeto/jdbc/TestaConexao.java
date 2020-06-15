@@ -6,6 +6,8 @@
 package projeto.jdbc;
 
 import javax.swing.JOptionPane;
+import projeto.dao.ClientesDao;
+import projeto.model.ModelClientes;
 
 /**
  *
@@ -19,6 +21,10 @@ public class TestaConexao {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Falha na conexão" + e);
         }
+        ClientesDao dao = new ClientesDao();
+        ModelClientes obj = new ModelClientes();
+        
+        dao.cadastrarCliente(obj);
     }
     
 }
