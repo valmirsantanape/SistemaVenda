@@ -36,12 +36,12 @@ public class ClientesDao {
             String sql = "insert into tb_clientes(nome,email,rg,cpf,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado)"
                     + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
-            //stmt.setString(1,obj.getNome());
-            stmt.setString(1,"Valmir");
+            stmt.setString(1,obj.getNome());
+            //stmt.setString(1,"Antonio");
             stmt.setString(2,obj.getEmail());
             stmt.setString(3,obj.getRg());
-            stmt.setString(4,"11111111111");
-            //stmt.setString(4,obj.getCpf());
+            stmt.setString(4,obj.getCpf());
+            //stmt.setString(4,"123123123");
             stmt.setString(5,obj.getTelefone());
             stmt.setString(6,obj.getCelular());
             stmt.setString(7,obj.getCep());

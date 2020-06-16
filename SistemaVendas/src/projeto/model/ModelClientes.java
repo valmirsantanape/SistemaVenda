@@ -28,7 +28,7 @@ public class ModelClientes {
     private String estado;
 
     //Getteres e Setteres
-    
+
     public int getId() {
         return id;
     }
@@ -140,8 +140,5 @@ public class ModelClientes {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
-   
     
 }
