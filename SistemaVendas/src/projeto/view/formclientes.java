@@ -5,7 +5,9 @@
  */
 package projeto.view;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import projeto.dao.ClientesDao;
 import projeto.model.ModelClientes;
 
@@ -14,7 +16,40 @@ import projeto.model.ModelClientes;
  * @author devvalmir
  */
 public class formclientes extends javax.swing.JFrame {
-
+    //
+    public void carrgarTabela(){
+        
+        ClientesDao dao = new ClientesDao();
+        List<ModelClientes> lista = dao.listarClientes();
+        //DefaultTableModel = Exibir dados na tabela
+        DefaultTableModel dados = (DefaultTableModel)tabelaclientes.getModel();
+        dados.setNumRows(0);
+        
+        for(ModelClientes c: lista){
+            dados.addRow(new Object[]{
+            c.getId(),
+            c.getNome(),
+            c.getCpf(),
+            //c.getRg(),
+            //c.getEmail(),
+            c.getTelefone(),
+            c.getCelular(),c.getCep(),
+            //c.getEndereco(),
+           
+            //c.getNumero(),
+            //c.getComplemento(),
+            //c.getBairro(),
+            c.getCidade(),
+            c.getEstado(),
+                
+                
+            });
+            
+        
+        
+        }
+        
+    }
     /**
      * Creates new form formclientes
      */
@@ -77,6 +112,11 @@ public class formclientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clientes");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do cliente"));
 
@@ -311,9 +351,10 @@ public class formclientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo:", "Nome:", "CPF", "Email", "Telefone", "Celular", "CEP", "Endereço", "Nº", "Comp", "Bairro", "Cidade", "Estado"
+                "Cod:", "Nome:", "CPF", "Telefone", "Cidade"
             }
         ));
+        tabelaclientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabelaclientes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -390,6 +431,13 @@ public class formclientes extends javax.swing.JFrame {
     private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        //Carregar a lista
+        carrgarTabela();
+        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
