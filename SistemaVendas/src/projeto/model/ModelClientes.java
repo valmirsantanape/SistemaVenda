@@ -14,9 +14,9 @@ public class ModelClientes {
     //Atributos 
     private int id;
     private String nome;
-    private String email;
-    private String rg;
     private String cpf;
+    private String rg;
+    private String email;
     private String telefone;
     private String celular;
     private String cep;
@@ -45,12 +45,12 @@ public class ModelClientes {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getRg() {
@@ -61,12 +61,12 @@ public class ModelClientes {
         this.rg = rg;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelefone() {
@@ -141,4 +141,6 @@ public class ModelClientes {
         this.estado = estado;
     }
     
-}
+    
+    
+    }

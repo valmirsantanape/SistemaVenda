@@ -105,6 +105,12 @@ public class formclientes extends javax.swing.JFrame {
         cbuf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PE" }));
         cbuf.setToolTipText("");
 
+        txtemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtemailActionPerformed(evt);
+            }
+        });
+
         lblcodigo.setText("0");
 
         btnbuscarcliente1.setText("Limpar");
@@ -360,9 +366,9 @@ public class formclientes extends javax.swing.JFrame {
         ModelClientes obj = new ModelClientes();
         
         obj.setNome(txtnome.getText());
-        obj.setEmail(txtemail.getText());
-        obj.setRg(txtrg.getText());
         obj.setCpf(txtcpf.getText());
+        obj.setRg(txtrg.getText());
+        obj.setEmail(txtemail.getText());
         obj.setTelefone(txttelefone.getText());
         obj.setCelular(txtcelular.getText());
         obj.setCep(txtcep.getText());
@@ -380,6 +386,10 @@ public class formclientes extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnsalvarclienteActionPerformed
+
+    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtemailActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,11 +6,16 @@
 package projeto.dao;
 
 
+
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import projeto.model.ModelClientes;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import projeto.jdbc.ConnectionFactory;
 
 /**
@@ -37,11 +42,13 @@ public class ClientesDao {
                     + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,obj.getNome());
-            //stmt.setString(1,"Antonio");
-            stmt.setString(2,obj.getEmail());
-            stmt.setString(3,obj.getRg());
             stmt.setString(4,obj.getCpf());
+            //stmt.setString(1,"Antonio");
+            
+            stmt.setString(3,obj.getRg());
+            
             //stmt.setString(4,"123123123");
+            stmt.setString(2,obj.getEmail());
             stmt.setString(5,obj.getTelefone());
             stmt.setString(6,obj.getCelular());
             stmt.setString(7,obj.getCep());
@@ -73,5 +80,45 @@ public class ClientesDao {
         ModelClientes obj = new ModelClientes();
         
     }
-    
+    public List<ModelClientes>listarClientes(){
+        
+        try {
+            List<ModelClientes> lista = new ArrayList<>();
+            String sql = "select *from tb_clientes";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+            //Classe ResultSet recebe os dados obtidos com comando "select" no sql e adciona em um objeto
+            //Sempre que for usado o select é necessário importar a classe ResultSet
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+                ModelClientes obj = new ModelClientes();
+                
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("nome"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setRg(rs.getString("rg"));
+                obj.setEmail(rs.getString("email"));
+                obj.setTelefone(rs.getString("telefone"));
+                obj.setCelular(rs.getString("celular"));
+                obj.setCep(rs.getString("cep"));
+                obj.setEndereco(rs.getString("endereco"));
+                obj.setComplemento(rs.getString("complemento"));
+                obj.setNumero(rs.getInt("numero"));
+                obj.setBairro(rs.getString("bairro"));
+                obj.setCidade(rs.getString("cidade"));
+                obj.setEstado(rs.getString("estado"));
+                
+                lista.add(obj);
+            }
+                return lista;
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Erro: " + e);
+            return null;
+            
+        }
+    }
+        
+
 }

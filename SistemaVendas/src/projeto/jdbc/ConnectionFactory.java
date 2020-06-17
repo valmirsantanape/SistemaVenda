@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 public class ConnectionFactory {
     public Connection getConnection(){
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost/bdvendas?useTimezone=true&serverTimezone=UTC","root","12345");
+            return DriverManager.getConnection("jdbc:mysql://localhost/bdvendas?useTimezone=true&serverTimezone=UTC","root","");
         } catch (Exception e) {
             throw new RuntimeException(e);
             //JOptionPane.showMessageDialog("Falha na conexão", e);
