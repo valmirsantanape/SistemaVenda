@@ -72,12 +72,69 @@ public class ClientesDao {
         }
         
     }
-    public void alterarCliente(){
-        ModelClientes obj = new ModelClientes();
+    public void alterarCliente(ModelClientes obj){
+        
+        try {
+            //1º passo: crie o comando SQL
+            String sql = "update tb_clientes set nome=?,email=?,rg=?,cpf=?,telefone=?,celular=?,cep=?,"
+                    + "endereco=?,numero=?,complemento=?,bairro =?,cidade=?,estado=? where id = ?";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,obj.getNome());
+            stmt.setString(4,obj.getCpf());
+            //stmt.setString(1,"Antonio");
+            
+            stmt.setString(3,obj.getRg());
+            
+            //stmt.setString(4,"123123123");
+            stmt.setString(2,obj.getEmail());
+            stmt.setString(5,obj.getTelefone());
+            stmt.setString(6,obj.getCelular());
+            stmt.setString(7,obj.getCep());
+            stmt.setString(8,obj.getEndereco());
+            stmt.setInt(9,obj.getNumero());
+            stmt.setString(10,obj.getComplemento());
+            stmt.setString(11,obj.getBairro());
+            stmt.setString(12,obj.getCidade());
+            stmt.setString(13,obj.getEstado());
+            
+            stmt.setInt(14, obj.getId());
+            
+            //3º Executar comando sql
+            stmt.execute();
+            stmt.close();
+            
+            JOptionPane.showMessageDialog(null, "Dados do cliente alterado com sucesso! ");
+            
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, erro);
+            
+        }
         
     }
-    public void excluirCliente(){
-        ModelClientes obj = new ModelClientes();
+    public void excluirCliente(ModelClientes obj){
+        
+        try {
+            //1º passo: crie o comando SQL
+            String sql = "delete *from tb_clientes where id=?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1,obj.getId());
+            
+            //3º Executar comando sql
+            stmt.execute();
+            stmt.close();
+            
+            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso ");
+            
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, erro);
+            
+        }
+
+        
+        
         
     }
     public List<ModelClientes>listarClientes(){
